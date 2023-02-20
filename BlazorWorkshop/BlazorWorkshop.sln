@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33402.96
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkshopApi", "WorkshopApi\WorkshopApi.csproj", "{407EAD26-8345-4819-9E46-E7E50D8F8F07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkshopApi", "WorkshopApi\WorkshopApi.csproj", "{407EAD26-8345-4819-9E46-E7E50D8F8F07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkshopConfTool.Shared", "WorkshopConfTool.Shared\WorkshopConfTool.Shared.csproj", "{265D244B-0210-432D-BA3A-063DEC32B271}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkshopConfTool.Shared", "WorkshopConfTool.Shared\WorkshopConfTool.Shared.csproj", "{265D244B-0210-432D-BA3A-063DEC32B271}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkshopClient", "WorkshopClient\WorkshopClient.csproj", "{8351CA93-6B5F-4412-8193-8A820F0A2DAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{265D244B-0210-432D-BA3A-063DEC32B271}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{265D244B-0210-432D-BA3A-063DEC32B271}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{265D244B-0210-432D-BA3A-063DEC32B271}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8351CA93-6B5F-4412-8193-8A820F0A2DAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8351CA93-6B5F-4412-8193-8A820F0A2DAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8351CA93-6B5F-4412-8193-8A820F0A2DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8351CA93-6B5F-4412-8193-8A820F0A2DAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

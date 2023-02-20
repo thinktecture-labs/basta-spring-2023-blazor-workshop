@@ -1,0 +1,30 @@
+﻿@page "/conferences/{id:guid}"
+
+@if(_isLoading)
+{
+    <MudProgressCircular></MudProgressCircular>
+}
+else if(_conference is not null)
+{
+    <EditForm @ref="_editForm" class="conf-form" Model="_conference" OnSubmit="SaveConference">
+        <DataAnnotationsValidator />
+        <FluentValidationValidator />
+        <InputText @bind-Value="_conference.Title" />
+        <ValidationMessage For="() => _conference.Title" />
+        <InputText @bind-Value="_conference.City" />
+        <ValidationMessage For="() => _conference.City" />
+        <InputText @bind-Value="_conference.Country" />
+        <InputDate @bind-Value="_conference.DateFrom" />
+        <InputDate @bind-Value="_conference.DateTo" />
+        <InputText @bind-Value="_conference.Url" />
+
+        <div class="actions">
+            <MudButton ButtonType="ButtonType.Submit">Speichern</MudButton>
+            <MudButton OnClick="Cancel">Abbrechen</MudButton>
+        </div>
+    </EditForm>
+}
+else
+{
+    <MudAlert Severity="Severity.Info">Die Konferenz mit der Id @Id wurde nicht gefunden.</MudAlert>
+}

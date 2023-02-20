@@ -41,6 +41,10 @@ namespace WorkshopApi.Controllers
         [HttpPost]
         public ActionResult<ConferenceDetails> AddConference([FromBody] ConferenceDetails conference)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var conf = conference.ToEntity();
             
             _dbContext.Conferences.Add(conf);

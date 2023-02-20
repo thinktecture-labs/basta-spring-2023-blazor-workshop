@@ -1,0 +1,21 @@
+﻿@page "/conferences"
+
+@if (_isLoading)
+{
+    <MudProgressCircular></MudProgressCircular>
+}
+else if (_conferences.Count > 0)
+{
+    <div class="list-container">
+        @foreach (var conf in _conferences)
+        {
+            <div @key="conf.ID" class="card" onclick="@(() => OpenDetails(conf.ID))">
+                <span class="title">@conf.Title</span>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <MudAlert Severity="Severity.Info">Es wurden keine Konferenzen gefunden.</MudAlert>
+}

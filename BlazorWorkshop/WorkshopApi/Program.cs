@@ -1,6 +1,8 @@
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using WorkshopApi.Database;
 using WorkshopApi.Utils;
+using WorkshopConfTool.Shared.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ConferencesDbContext>(options =>
         options.UseInMemoryDatabase(databaseName: "ConfTool"));
+
+builder.Services.AddMvc().AddFluentValidation(fv =>
+        fv.RegisterValidatorsFromAssemblyContaining<ConferenceDetailsValidator>());
 
 var app = builder.Build();
 
