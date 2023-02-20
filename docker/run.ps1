@@ -1,0 +1,1 @@
+docker run -d --name blazor_workshop_idp -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin --mount "type=bind,source=${pwd}/BlazorWorkshop.json,target=/opt/keycloak/data/import/BlazorWorkshop.json" quay.io/keycloak/keycloak:latest start-dev --import-realm

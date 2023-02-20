@@ -1,4 +1,5 @@
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using WorkshopApi.Database;
 using WorkshopApi.Utils;
@@ -19,6 +20,14 @@ builder.Services.AddDbContext<ConferencesDbContext>(options =>
 builder.Services.AddMvc().AddFluentValidation(fv =>
         fv.RegisterValidatorsFromAssemblyContaining<ConferenceDetailsValidator>());
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.Authority = "http://localhost:8080/realms/BlazorWorkshop";
+        options.RequireHttpsMetadata = false;
+        options.Audience = "blazor-api";
+    });
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -38,6 +47,9 @@ app.UseHttpsRedirection();
 
 app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowCredentials().SetIsOriginAllowed(o => true));
 
+app.UseRouting();
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

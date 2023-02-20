@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WorkshopApi.Database;
 using WorkshopApi.Extensions;
@@ -7,6 +8,7 @@ using WorkshopConfTool.Shared.Models;
 namespace WorkshopApi.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/v1/[controller]")]
     public class ConferencesController : ControllerBase
     {
