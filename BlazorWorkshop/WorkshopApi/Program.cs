@@ -2,6 +2,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using WorkshopApi.Database;
+using WorkshopApi.SignalR;
 using WorkshopApi.Utils;
 using WorkshopConfTool.Shared.Validators;
 
@@ -28,6 +29,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         options.Audience = "blazor-api";
     });
 
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -53,5 +56,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.MapHub<ConferencesHub>("/conferencesHub");
 app.Run();

@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using WorkshopApi.Database;
 using WorkshopApi.Extensions;
+using WorkshopApi.SignalR;
 using WorkshopConfTool.Shared.Models;
 
 namespace WorkshopApi.Controllers
@@ -13,10 +15,12 @@ namespace WorkshopApi.Controllers
     public class ConferencesController : ControllerBase
     {
         private readonly ConferencesDbContext _dbContext;
+        private readonly IHubContext<ConferencesHub> _hub;
 
-        public ConferencesController(ConferencesDbContext dbContext)
+        public ConferencesController(ConferencesDbContext dbContext, IHubContext<ConferencesHub> hub)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            _hub = hub ?? throw new ArgumentNullException(nameof(hub));
         }
 
         [HttpGet]
@@ -56,7 +60,7 @@ namespace WorkshopApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateConference(Guid id, [FromBody] ConferenceDetails conference)
+        public async Task<IActionResult> UpdateConference(Guid id, [FromBody] ConferenceDetails conference)
         {
             if (id != conference.ID)
             {
@@ -68,11 +72,12 @@ namespace WorkshopApi.Controllers
 
             try
             {
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
+                await _hub.Clients.All.SendAsync("ConferenceUpdated", conf.ToDetail());
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_dbContext.Conferences.Any(c => c.ID == id))
+                if (!await _dbContext.Conferences.AnyAsync(c => c.ID == id))
                 {
                     return NotFound();
                 }
