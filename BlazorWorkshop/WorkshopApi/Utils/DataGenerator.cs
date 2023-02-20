@@ -19,11 +19,11 @@ namespace WorkshopApi.Utils
                     new Conference
                     {
                         ID = Guid.NewGuid(),
-                        Title = "BASTA! Spring 2020",
+                        Title = "BASTA! Spring 2023",
                         City = "Frankfurt am Main",
                         Country = "Germany",
-                        DateFrom = new DateTime(2020, 2, 24),
-                        DateTo = new DateTime(2020, 2, 28),
+                        DateFrom = new DateTime(2023, 2, 24),
+                        DateTo = new DateTime(2023, 2, 28),
                         Url = "https://www.basta.net/"
                     },
                     new Conference
