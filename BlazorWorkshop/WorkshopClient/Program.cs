@@ -3,12 +3,15 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
 using WorkshopClient;
 using WorkshopClient.Handler;
+using WorkshopClient.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped<CustomAuthorizationHeaderHandler>();
+builder.Services.AddScoped<SignalRService>();
+builder.Services.AddScoped<NotificationService>();
 builder.Services.AddHttpClient("Workshop.WebApi", client =>
                 client.BaseAddress = new Uri("https://localhost:7069/"))
                     .AddHttpMessageHandler<CustomAuthorizationHeaderHandler>();

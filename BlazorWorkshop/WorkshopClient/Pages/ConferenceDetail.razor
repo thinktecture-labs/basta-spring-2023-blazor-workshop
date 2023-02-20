@@ -1,5 +1,7 @@
 ﻿@page "/conferences/{id:guid}"
 
+<NavigationLock ConfirmExternalNavigation="_touched" OnBeforeInternalNavigation="OnBeforeNavigation"></NavigationLock>
+
 @if(_isLoading)
 {
     <MudProgressCircular></MudProgressCircular>

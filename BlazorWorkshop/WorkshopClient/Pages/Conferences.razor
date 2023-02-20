@@ -9,12 +9,11 @@
 else if (_conferences.Count > 0)
 {
     <div class="list-container">
-        @foreach (var conf in _conferences)
-        {
-            <div @key="conf.ID" class="card" onclick="@(() => OpenDetails(conf.ID))">
+        <Virtualize Items="_conferences" Context="conf">
+            <div class="card" onclick="@(() => OpenDetails(conf.ID))">
                 <span class="title">@conf.Title</span>
             </div>
-        }
+        </Virtualize>
     </div>
 }
 else
