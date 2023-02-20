@@ -1,4 +1,6 @@
 ﻿@page "/conferences"
+@using Microsoft.AspNetCore.Authorization;
+@attribute [Authorize]
 
 @if (_isLoading)
 {
